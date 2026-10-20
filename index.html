@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Capital-X · Inteligência econômica global, todos os dias</title>
+  <meta name="description" content="Capital-X: notícia econômica diária com dados oficiais, fontes citadas e revisão humana.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span id="today">Terça-feira, 20 de outubro de 2026</span>
+      <span class="edition">Economia global · Edição diária</span>
+    </div>
+  </div>
+
+  <div class="ticker" role="region" aria-label="Indicadores de mercado">
+    <div class="ticker-viewport" id="ticker" title="Cotações com possível atraso">
+      <div class="ticker-track" id="ticker-track">
+        <ul class="ticker-list">
+          <li data-id="sp500">S&amp;P 500 <b>—</b> <span></span></li>
+          <li data-id="nasdaq">Nasdaq <b>—</b> <span></span></li>
+          <li data-id="ibovespa">Ibovespa <b>—</b> <span></span></li>
+          <li data-id="dolar">Dólar <b>—</b> <span></span></li>
+          <li data-id="petroleo">Petróleo <b>—</b> <span></span></li>
+          <li data-id="ouro">Ouro <b>—</b> <span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <a class="brand" href="index.html" aria-label="Capital-X, página inicial">
+        <span class="logo">Capital-X</span>
+        <span class="tagline">Inteligência econômica global, todos os dias.</span>
+      </a>
+
+      <nav id="menu" class="menu" aria-label="Editorias">
+        <a href="#acoes">Ações e Big Techs</a>
+        <a href="#potencial">Empresas com Potencial</a>
+        <a href="#paises">Economia dos Países</a>
+        <a href="#bancos">Bancos Globais</a>
+        <a href="#macro">Macro Global</a>
+      </nav>
+
+      <div class="actions">
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+        <button class="icon-btn" id="search-toggle" type="button" aria-label="Abrir busca" aria-expanded="false" aria-controls="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </button>
+        <a class="btn btn-dark" href="#newsletter">Newsletter</a>
+      </div>
+    </div>
+
+    <form id="search-bar" class="search-bar" action="busca.html" method="get" role="search" hidden>
+      <div class="wrap">
+        <label class="sr-only" for="q">Buscar no Capital-X</label>
+        <input id="q" name="q" type="search" placeholder="Busque por empresa, país, tema ou ticker">
+        <button class="btn btn-dark" type="submit">Buscar</button>
+      </div>
+    </form>
+  </header>
+
+  <main>
+    <section class="wrap hero">
+      <article class="lead">
+        <p class="kicker">Notícia do dia · Macro Global</p>
+        <h1><a href="artigo.html">Bancos centrais recalibram o ritmo de cortes enquanto a economia global perde tração</a></h1>
+        <p class="sub">A persistência da inflação de serviços e os sinais de desaceleração do crescimento tornam mais delicadas as próximas decisões sobre juros nas principais economias.</p>
+        <p class="meta">
+          <span>20 de outubro de 2026 · Global</span>
+          <span class="badge">Produzido com auxílio de IA e revisado pela equipe</span>
+        </p>
+        <a class="btn btn-dark" href="artigo.html">Ler matéria</a>
+      </article>
+
+      <aside class="data" aria-labelledby="dados-titulo">
+        <h2 id="dados-titulo">Dados do dia</h2>
+        <table>
+          <tbody>
+            <tr><th scope="row">Inflação global estimada</th><td>4,2%</td></tr>
+            <tr><th scope="row">Taxa básica do Fed</th><td>3,75%–4,00%</td></tr>
+            <tr><th scope="row">Taxa Selic</th><td>12,25%</td></tr>
+            <tr><th scope="row">PMI industrial global</th><td>49,8</td></tr>
+            <tr><th scope="row">Treasury de 10 anos</th><td>4,18%</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Fontes: FMI, Federal Reserve, Banco Central e indicadores de mercado. Valores editoriais ilustrativos; confirme nas fontes oficiais.</p>
+      </aside>
+    </section>
+
+    <section class="wrap recent" aria-labelledby="recentes-titulo">
+      <div class="section-head">
+        <h2 id="recentes-titulo">Matérias recentes</h2>
+        <a class="link-under" href="busca.html">Ver todas as matérias</a>
+      </div>
+      <div class="cols">
+        <article class="card">
+          <p class="cat">Bancos Globais</p>
+          <h3><a href="artigo.html">Bancos centrais divergem sobre o próximo passo dos juros</a></h3>
+          <p>A inflação resistente e a atividade desigual ampliam as diferenças entre políticas monetárias.</p>
+          <p class="when">20 out. 2026 · Global</p>
+        </article>
+        <article class="card">
+          <p class="cat">Ações e Big Techs</p>
+          <h3><a href="artigo.html">Resultados de tecnologia alteram projeções para 2027</a></h3>
+          <p>Investidores acompanham margens, geração de caixa e despesas de capital das grandes plataformas.</p>
+          <p class="when">19 out. 2026 · Estados Unidos</p>
+        </article>
+        <article class="card">
+          <p class="cat">Economia dos Países</p>
+          <h3><a href="artigo.html">Inflação europeia desacelera, mas serviços seguem pressionados</a></h3>
+          <p>A composição dos preços recomenda cautela diante dos próximos indicadores da região.</p>
+          <p class="when">18 out. 2026 · Europa</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <section class="editoria" id="acoes" aria-labelledby="h-acoes">
+        <div class="section-head">
+          <h2 id="h-acoes">Ações e Big Techs</h2>
+          <a class="btn btn-line" href="busca.html?editoria=acoes">Ver editoria</a>
+        </div>
+        <div class="cols">
+          <h3><a href="artigo.html">Resultados das grandes plataformas redefinem projeções de investimento</a></h3>
+          <h3><a href="artigo.html">Mercado acompanha margens do setor de semicondutores</a></h3>
+          <h3><a href="artigo.html">Empresas de tecnologia revisam despesas de capital</a></h3>
+        </div>
+      </section>
+
+      <section class="editoria" id="potencial" aria-labelledby="h-potencial">
+        <div class="section-head">
+          <h2 id="h-potencial">Empresas com Potencial</h2>
+          <a class="btn btn-line" href="busca.html?editoria=potencial">Ver editoria</a>
+        </div>
+        <div class="cols">
+          <h3><a href="artigo.html">Automação industrial atrai atenção de investidores institucionais</a></h3>
+          <h3><a href="artigo.html">Balanços expõem oportunidades e riscos no setor de energia</a></h3>
+          <h3><a href="artigo.html">Infraestrutura digital entra no radar do mercado</a></h3>
+        </div>
+      </section>
+
+      <section class="editoria" id="paises" aria-labelledby="h-paises">
+        <div class="section-head">
+          <h2 id="h-paises">Economia dos Países</h2>
+          <a class="btn btn-line" href="busca.html?editoria=paises">Ver editoria</a>
+        </div>
+        <div class="cols">
+          <h3><a href="artigo.html">Inflação europeia desacelera, mas serviços seguem pressionados</a></h3>
+          <h3><a href="artigo.html">Atividade chinesa revela recuperação desigual</a></h3>
+          <h3><a href="artigo.html">Brasil ajusta expectativas para crescimento e preços</a></h3>
+        </div>
+      </section>
+
+      <section class="editoria" id="bancos" aria-labelledby="h-bancos">
+        <div class="section-head">
+          <h2 id="h-bancos">Bancos Globais</h2>
+          <a class="btn btn-line" href="busca.html?editoria=bancos">Ver editoria</a>
+        </div>
+        <div class="cols">
+          <h3><a href="artigo.html">Bancos centrais divergem sobre o próximo passo dos juros</a></h3>
+          <h3><a href="artigo.html">Crédito corporativo testa disciplina de risco dos bancos</a></h3>
+          <h3><a href="artigo.html">Resultados bancários apontam cautela com inadimplência</a></h3>
+        </div>
+      </section>
+
+      <section class="editoria" id="macro" aria-labelledby="h-macro">
+        <div class="section-head">
+          <h2 id="h-macro">Macro Global</h2>
+          <a class="btn btn-line" href="busca.html?editoria=macro">Ver editoria</a>
+        </div>
+        <div class="cols">
+          <h3><a href="artigo.html">Cortes de juros encontram crescimento global mais fraco</a></h3>
+          <h3><a href="artigo.html">Comércio internacional reage a novas projeções</a></h3>
+          <h3><a href="artigo.html">Inflação e produtividade alteram cenário para 2027</a></h3>
+        </div>
+      </section>
+    </div>
+
+    <section class="wrap">
+      <div class="newsletter" id="newsletter">
+        <p class="kicker">Leitura diária</p>
+        <h2>Newsletter diária</h2>
+        <p>Receba uma seleção objetiva dos principais acontecimentos da economia global. Informe seu e-mail para registrar a assinatura.</p>
+        <form id="news-form" novalidate>
+          <label class="sr-only" for="email">E-mail profissional</label>
+          <input id="email" name="email" type="email" placeholder="Seu e-mail profissional" autocomplete="email" required>
+          <button class="btn btn-dark" type="submit">Assinar</button>
+        </form>
+        <p id="news-msg" class="form-msg" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <nav aria-label="Institucional">
+        <a href="sobre.html">Sobre</a>
+        <a href="metodologia.html">Metodologia</a>
+        <a href="correcoes.html">Política de correções</a>
+        <a href="termos.html">Termos</a>
+        <a href="privacidade.html">Privacidade</a>
+        <a href="aviso-legal.html">Aviso legal</a>
+        <a href="precisao.html">Painel de precisão</a>
+      </nav>
+      <p class="disclaimer">Conteúdo informativo. Não constitui recomendação de investimento.</p>
+      <p class="copy">© 2026 Capital-X</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://us-central1-capital-x-ff7b0.cloudfunctions.net; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <title>Account - Capital-X</title>
   <link rel="icon" href="favicon.png" type="image/png" sizes="256x256">
@@ -32,7 +32,10 @@
         <input type="email" name="email" autocomplete="email" maxlength="254" required>
       </label>
       <label>Password
+        <span class="senha-campo">
         <input type="password" name="senha" autocomplete="current-password" maxlength="128" required>
+        <button class="ver-senha" type="button" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="risco" d="M3 3l18 18"/></svg></button>
+      </span>
       </label>
       <button class="enviar" type="submit">Sign in</button>
       <button class="link" id="esqueci" type="button">Forgot password?</button>
@@ -46,18 +49,32 @@
         <input type="email" name="email" autocomplete="email" maxlength="254" required>
       </label>
       <label>Password (min. 8 characters)
+        <span class="senha-campo">
         <input type="password" name="senha" autocomplete="new-password" minlength="8" maxlength="128" required>
+        <button class="ver-senha" type="button" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="risco" d="M3 3l18 18"/></svg></button>
+      </span>
       </label>
       <label>Confirm password
+        <span class="senha-campo">
         <input type="password" name="confirma" autocomplete="new-password" minlength="8" maxlength="128" required>
+        <button class="ver-senha" type="button" aria-label="Show password" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="risco" d="M3 3l18 18"/></svg></button>
+      </span>
       </label>
       <button class="enviar" type="submit">Create account</button>
     </form>
 
+    <form id="form-codigo" data-tipo="codigo" hidden novalidate>
+      <p class="instrucao">We sent a 6-character code to <strong id="codigo-email"></strong>. Enter it to finish.</p>
+      <label>Verification code
+        <input class="codigo" type="text" id="codigo" name="codigo" inputmode="text" autocomplete="one-time-code" autocapitalize="characters" autocorrect="off" spellcheck="false" maxlength="6" minlength="6" pattern="[A-Z0-9]{6}" required>
+      </label>
+      <button class="enviar" type="submit">Verify</button>
+      <button class="link" id="reenviar" type="button">Resend code</button>
+      <button class="link" id="cancelar" type="button">Cancel and sign out</button>
+    </form>
+
     <div class="logado" id="conta-logado" hidden>
       <p>Signed in as <strong id="conta-nome"></strong></p>
-      <p class="aviso" id="conta-aviso"></p>
-      <a class="enviar" href="index.html">Continue to Capital-X</a>
       <button class="link" id="sair" type="button">Sign out</button>
     </div>
 

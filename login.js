@@ -1,20 +1,49 @@
 import {
   createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut,
-  onAuthStateChanged, updateProfile, sendEmailVerification, sendPasswordResetEmail
+  onAuthStateChanged, updateProfile, sendPasswordResetEmail
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { auth } from "./firebase-init.js";
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
+import { auth, app } from "./firebase-init.js";
 
 const $ = (id) => document.getElementById(id);
 const formEntrar = $("form-entrar");
 const formCriar = $("form-criar");
+const formCodigo = $("form-codigo");
 const abaEntrar = $("aba-entrar");
 const abaCriar = $("aba-criar");
 const abas = document.querySelector(".abas");
 const painelLogado = $("conta-logado");
 const statusConta = $("conta-status");
+const campoCodigo = $("codigo");
 
-// ---------- Abas ----------
+// Funções do servidor (functions/index.js): enviam e conferem o código
+const funcoes = app ? getFunctions(app, "us-central1") : null;
+const enviarCodigo = funcoes && httpsCallable(funcoes, "enviarCodigo");
+const verificarCodigo = funcoes && httpsCallable(funcoes, "verificarCodigo");
+
+// ---------- Ver / esconder senha ----------
+document.querySelectorAll(".ver-senha").forEach((botao) => {
+  const campo = botao.parentElement.querySelector("input");
+  botao.addEventListener("click", () => {
+    const mostrar = campo.type === "password";
+    campo.type = mostrar ? "text" : "password";
+    botao.setAttribute("aria-pressed", String(mostrar));
+    botao.setAttribute("aria-label", mostrar ? "Hide password" : "Show password");
+  });
+});
+
+// ---------- Telas ----------
+function esconderTudo() {
+  formEntrar.hidden = true;
+  formCriar.hidden = true;
+  formCodigo.hidden = true;
+  painelLogado.hidden = true;
+  abas.hidden = true;
+}
+
 function mostrarAba(criar) {
+  esconderTudo();
+  abas.hidden = false;
   formEntrar.hidden = criar;
   formCriar.hidden = !criar;
   abaEntrar.setAttribute("aria-selected", String(!criar));
@@ -25,15 +54,32 @@ abaEntrar.addEventListener("click", () => mostrarAba(false));
 abaCriar.addEventListener("click", () => mostrarAba(true));
 if (location.hash === "#register") mostrarAba(true);
 
-// ---------- Estado da sessão ----------
-function atualizarUI(user) {
-  const logado = Boolean(user);
-  painelLogado.hidden = !logado;
-  abas.hidden = logado;
-  if (logado) { formEntrar.hidden = true; formCriar.hidden = true; }
-  else if (formEntrar.hidden && formCriar.hidden) { mostrarAba(false); }
-  $("conta-nome").textContent = logado ? (user.displayName || user.email) : "";
-  $("conta-aviso").textContent = logado && !user.emailVerified ? "Please verify your email (check your inbox)." : "";
+function mostrarCodigo(user) {
+  esconderTudo();
+  $("codigo-email").textContent = user.email;
+  formCodigo.hidden = false;
+  campoCodigo.focus();
+}
+
+function mostrarLogado(user) {
+  esconderTudo();
+  painelLogado.hidden = false;
+  $("conta-nome").textContent = user.displayName || user.email;
+}
+
+// A conta só vale depois do código: o servidor marca isso no token do usuário
+async function estaVerificado(user) {
+  const { claims } = await user.getIdTokenResult();
+  return claims.codigoVerificado === true;
+}
+
+async function atualizarUI(user) {
+  if (!user) {
+    if (formEntrar.hidden && formCriar.hidden) mostrarAba(false);
+    return;
+  }
+  if (await estaVerificado(user)) mostrarLogado(user);
+  else mostrarCodigo(user);
 }
 
 // Mensagens genéricas de propósito: não revelam se um e-mail já tem conta
@@ -46,7 +92,15 @@ const ERROS = {
   "auth/too-many-requests": "Too many attempts. Please wait a few minutes and try again.",
   "auth/network-request-failed": "Network error. Check your connection and try again."
 };
-const erroAmigavel = (e) => ERROS[e?.code] || "Something went wrong. Please try again.";
+// Erros do servidor que já vêm com texto pronto para o usuário
+const ERROS_SERVIDOR = [
+  "functions/invalid-argument", "functions/resource-exhausted",
+  "functions/deadline-exceeded", "functions/failed-precondition"
+];
+const erroAmigavel = (e) => {
+  if (ERROS_SERVIDOR.includes(e?.code) && e.message) return e.message;
+  return ERROS[e?.code] || "Something went wrong. Please try again.";
+};
 
 if (!auth) {
   statusConta.textContent = "Firebase is not configured yet. Fill in firebase-config.js.";
@@ -54,18 +108,65 @@ if (!auth) {
   onAuthStateChanged(auth, atualizarUI);
 }
 
+// ---------- Código por e-mail ----------
+async function pedirCodigo() {
+  statusConta.textContent = "Sending code…";
+  await enviarCodigo();
+  statusConta.textContent = "Code sent. It expires in 10 minutes.";
+}
+
+// Letras viram maiúsculas na hora; só letras e números entram
+campoCodigo.addEventListener("input", () => {
+  campoCodigo.value = campoCodigo.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6);
+});
+
+formCodigo.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (!auth?.currentUser) return;
+  const codigo = campoCodigo.value.trim().toUpperCase();
+  if (!/^[A-Z0-9]{6}$/.test(codigo)) {
+    statusConta.textContent = "Enter the 6-character code from your email.";
+    return;
+  }
+  const botao = formCodigo.querySelector(".enviar");
+  botao.disabled = true;
+  statusConta.textContent = "Checking…";
+  try {
+    await verificarCodigo({ codigo });
+    await auth.currentUser.getIdToken(true); // traz o token já com a marca de verificado
+    location.assign("index.html");
+  } catch (err) {
+    statusConta.textContent = erroAmigavel(err);
+  } finally {
+    botao.disabled = false;
+  }
+});
+
+$("reenviar").addEventListener("click", async () => {
+  if (!auth?.currentUser) return;
+  try { await pedirCodigo(); } catch (err) { statusConta.textContent = erroAmigavel(err); }
+});
+
+$("cancelar").addEventListener("click", async () => {
+  if (auth) await signOut(auth);
+});
+
 // ---------- Entrar / criar conta ----------
 async function entrar(dados) {
-  await signInWithEmailAndPassword(auth, dados.email, dados.senha);
-  location.assign("index.html"); // volta ao site, na mesma aba
+  const cred = await signInWithEmailAndPassword(auth, dados.email, dados.senha);
+  if (await estaVerificado(cred.user)) {
+    location.assign("index.html"); // volta ao site, na mesma aba
+    return;
+  }
+  mostrarCodigo(cred.user);
+  await pedirCodigo();
 }
 
 async function criar(dados) {
   const cred = await createUserWithEmailAndPassword(auth, dados.email, dados.senha);
   await updateProfile(cred.user, { displayName: dados.nome });
-  await sendEmailVerification(cred.user);
-  atualizarUI(auth.currentUser); // o Firebase não avisa a mudança de nome sozinho
-  statusConta.textContent = "Account created. We sent a verification email.";
+  mostrarCodigo(auth.currentUser);
+  await pedirCodigo();
 }
 
 [formEntrar, formCriar].forEach((form) => {

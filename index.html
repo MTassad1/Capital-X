@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <title>Capital-X</title>
-  <link rel="icon" href="favicon.png" type="image/png" sizes="256x256">
+  <link rel="icon" href="/Capital-X/img/LEMP/fivecon-Capital-X.png" type="image/png" sizes="256x256">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
   <script src="theme.js"></script>
@@ -20,9 +20,9 @@
     <div class="topo-interno">
       <div class="esquerda">
         <p class="data"><span id="data"></span></p>
-        <a class="conta" id="abrir-conta" href="login.html" aria-label="Account">
+        <button class="conta" id="abrir-conta" type="button" aria-label="Account" aria-haspopup="dialog" aria-expanded="false" aria-controls="painel">
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
-        </a>
+        </button>
       </div>
       <a class="marca nome notranslate" translate="no" href="#" aria-label="Capital-X"></a>
       <div class="acoes">
@@ -39,6 +39,20 @@
       </div>
     </div>
   </header>
+
+  <div class="painel-fundo" id="painel-fundo"></div>
+  <aside class="painel" id="painel" role="dialog" aria-modal="true" aria-labelledby="painel-titulo" inert>
+    <div class="painel-topo">
+      <h2 id="painel-titulo">Account</h2>
+      <button class="painel-fechar" id="fechar-painel" type="button" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="painel-botoes" aria-label="Account">
+      <a class="painel-botao" id="painel-entrar" href="login.html">Sign in / Sign up</a>
+      <a class="painel-botao" href="dashboard.html">Dashboard</a>
+    </nav>
+  </aside>
 
   <main id="main" class="contorno">
     <section class="hero">

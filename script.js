@@ -38,3 +38,34 @@ botaoTema.addEventListener("click", () => {
 });
 
 mostrarRotulo();
+
+// Painel lateral da conta
+const botaoConta = document.getElementById("abrir-conta");
+const painel = document.getElementById("painel");
+const fundoPainel = document.getElementById("painel-fundo");
+const fecharPainel = document.getElementById("fechar-painel");
+
+function abrirPainel() {
+  painel.inert = false;
+  painel.dataset.aberto = "true";
+  fundoPainel.dataset.aberto = "true";
+  document.documentElement.classList.add("painel-aberto");
+  botaoConta.setAttribute("aria-expanded", "true");
+  fecharPainel.focus();
+}
+
+function fechar() {
+  painel.inert = true;
+  painel.dataset.aberto = "false";
+  fundoPainel.dataset.aberto = "false";
+  document.documentElement.classList.remove("painel-aberto");
+  botaoConta.setAttribute("aria-expanded", "false");
+  botaoConta.focus();
+}
+
+botaoConta.addEventListener("click", abrirPainel);
+fecharPainel.addEventListener("click", fechar);
+fundoPainel.addEventListener("click", fechar);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && painel.dataset.aberto === "true") fechar();
+});

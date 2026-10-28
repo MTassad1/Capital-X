@@ -78,7 +78,7 @@ a { color: inherit; text-decoration: none; }
 .abas button[aria-selected="true"] { color: var(--texto); border-bottom-color: var(--texto); }
 
 form { display: grid; gap: 1rem; }
-form[hidden], .logado[hidden] { display: none; }
+form[hidden], .logado[hidden], .abas[hidden] { display: none; }
 
 label { display: grid; gap: .35rem; font-size: .85rem; color: var(--cinza); }
 input {
@@ -128,4 +128,38 @@ input:user-invalid { border-color: var(--texto); border-style: dashed; }
 @media (max-width: 520px) {
   .topo { grid-template-columns: 1fr auto; }
   .topo span { display: none; }
+}
+
+/* Campo de senha com botão de olho */
+.senha-campo { position: relative; display: block; }
+.senha-campo input { width: 100%; padding-right: 2.9rem; }
+.ver-senha {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  padding: 0;
+  color: var(--cinza);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.ver-senha:hover { color: var(--texto); }
+.ver-senha svg { width: 1.15rem; height: 1.15rem; }
+.ver-senha .risco { display: none; }
+.ver-senha[aria-pressed="true"] .risco { display: block; }
+
+/* Código de verificação */
+.instrucao { margin: 0; font-size: .95rem; color: var(--cinza); }
+.instrucao strong { color: var(--texto); font-weight: 400; overflow-wrap: anywhere; }
+input.codigo {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  letter-spacing: .5em;
+  text-align: center;
+  text-transform: uppercase;
 }

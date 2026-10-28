@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Capital-X</title>
+  <link rel="icon" href="favicon.png" type="image/png" sizes="256x256">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="script.js" defer></script>
+  <script type="module" src="session.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="topo">
+    <div class="topo-interno">
+      <div class="esquerda">
+        <p class="data"><span id="data"></span></p>
+        <a class="conta" id="abrir-conta" href="login.html" aria-label="Account">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+        </a>
+      </div>
+      <a class="marca nome notranslate" translate="no" href="#" aria-label="Capital-X"></a>
+      <div class="acoes">
+        <nav class="menu" aria-label="Main">
+          <a href="#">About us</a>
+          <a href="#News" aria-current="page">News</a>
+          <a href="#">Plans</a>
+          <a href="#">Contact</a>
+        </nav>
+        <button class="tema" id="tema" type="button" aria-label="Switch theme">
+          <svg class="icone-sol" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icone-lua" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="contorno">
+    <section class="hero">
+      <h1>The global economy, briefed once a day.</h1>
+      <p class="lead">Markets, companies and countries, read for you every morning and written for people who make decisions.</p>
+    </section>
+
+    <section class="lista" id="News" aria-labelledby="titulo-noticias">
+      <h2 id="titulo-noticias">Global news</h2>
+      <ol>
+        <li>
+          <h3>Central banks hold rates as inflation cools</h3>
+          <p>Example headline. The daily AI-written story will appear here.</p>
+        </li>
+        <li>
+          <h3>Big tech earnings lift global indices</h3>
+          <p>Example headline. The daily AI-written story will appear here.</p>
+        </li>
+        <li>
+          <h3>Emerging markets see record foreign inflows</h3>
+          <p>Example headline. The daily AI-written story will appear here.</p>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="rodape contorno">
+    <p>&copy; <span class="nome notranslate" translate="no" role="img" aria-label="Capital-X"></span></p>
+  </footer>
+</body>
+</html>

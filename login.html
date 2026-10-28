@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Account - Capital-X</title>
+  <link rel="icon" href="favicon.png" type="image/png" sizes="256x256">
+  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="login.css">
+  <script src="theme.js"></script>
+  <script type="module" src="login.js"></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="voltar" href="index.html">&larr; Back to site</a>
+    <a class="marca nome notranslate" translate="no" href="index.html" aria-label="Capital-X"></a>
+    <span></span>
+  </header>
+
+  <main class="cartao">
+    <h1>Your account</h1>
+
+    <div class="abas" role="tablist">
+      <button type="button" role="tab" id="aba-entrar" aria-selected="true" aria-controls="form-entrar">Sign in</button>
+      <button type="button" role="tab" id="aba-criar" aria-selected="false" aria-controls="form-criar">Create account</button>
+    </div>
+
+    <form id="form-entrar" data-tipo="entrar" novalidate>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" maxlength="254" required>
+      </label>
+      <label>Password
+        <input type="password" name="senha" autocomplete="current-password" maxlength="128" required>
+      </label>
+      <button class="enviar" type="submit">Sign in</button>
+      <button class="link" id="esqueci" type="button">Forgot password?</button>
+    </form>
+
+    <form id="form-criar" data-tipo="criar" hidden novalidate>
+      <label>Name
+        <input type="text" name="nome" autocomplete="name" maxlength="80" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" maxlength="254" required>
+      </label>
+      <label>Password (min. 8 characters)
+        <input type="password" name="senha" autocomplete="new-password" minlength="8" maxlength="128" required>
+      </label>
+      <label>Confirm password
+        <input type="password" name="confirma" autocomplete="new-password" minlength="8" maxlength="128" required>
+      </label>
+      <button class="enviar" type="submit">Create account</button>
+    </form>
+
+    <div class="logado" id="conta-logado" hidden>
+      <p>Signed in as <strong id="conta-nome"></strong></p>
+      <p class="aviso" id="conta-aviso"></p>
+      <a class="enviar" href="index.html">Continue to Capital-X</a>
+      <button class="link" id="sair" type="button">Sign out</button>
+    </div>
+
+    <p class="status" id="conta-status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

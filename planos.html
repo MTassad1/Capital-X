@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file:; connect-src https://open.er-api.com https://economia.awesomeapi.com.br; style-src 'self' file:; img-src 'self' file: data:; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Plans - Capital-X</title>
+  <link rel="icon" href="/Capital-X/img/LEMP/fivecon-Capital-X.png" type="image/png" sizes="256x256">
+  <link rel="stylesheet" href="planos.css">
+  <script src="theme.js"></script>
+  <script src="planos.js" defer></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="voltar" href="index.html">&larr; Back to site</a>
+    <a class="marca nome notranslate" translate="no" href="index.html" aria-label="Capital-X"></a>
+    <span></span>
+  </header>
+
+  <main class="contorno">
+    <h1>Choose your plan</h1>
+    <p class="lead">Monthly billing. Cancel any time.</p>
+
+    <section class="planos" aria-label="Monthly plans">
+      <article class="plano">
+        <h2>Personal</h2>
+        <p class="para">For individual readers.</p>
+        <p class="preco"><span class="valor notranslate" translate="no" data-usd="29.99">$29.99</span><span class="periodo">/ month</span></p>
+        <a class="assinar" href="checkout.html?plano=personal">Choose Personal</a>
+      </article>
+
+      <article class="plano destaque">
+        <h2>Premium</h2>
+        <p class="para">The complete Capital-X experience.</p>
+        <p class="preco"><span class="valor notranslate" translate="no" data-usd="99.99">$99.99</span><span class="periodo">/ month</span></p>
+        <a class="assinar" href="checkout.html?plano=premium">Choose Premium</a>
+      </article>
+
+      <article class="plano">
+        <h2>Business</h2>
+        <p class="para">For teams and companies.</p>
+        <p class="preco"><span class="valor notranslate" translate="no" data-usd="75.99">$75.99</span><span class="periodo">/ month</span></p>
+        <a class="assinar" href="checkout.html?plano=business">Choose Business</a>
+      </article>
+    </section>
+
+    <!-- Plano de teste para validar o pagamento. Apague este bloco antes de publicar. -->
+    <section class="teste" aria-label="Test plan">
+      <div>
+        <h2>Test plan</h2>
+        <p class="para">For testing the payment flow only.</p>
+      </div>
+      <p class="preco"><span class="valor notranslate" translate="no" data-brl="1">R$1.00</span><span class="periodo">/ month</span></p>
+      <a class="assinar" href="checkout.html?plano=test">Choose Test</a>
+    </section>
+  </main>
+
+  <footer class="rodape contorno">
+    <p>&copy; <span class="nome notranslate" translate="no" role="img" aria-label="Capital-X"></span></p>
+  </footer>
+</body>
+</html>

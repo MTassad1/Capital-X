@@ -16,6 +16,10 @@ const painelLogado = $("conta-logado");
 const statusConta = $("conta-status");
 const campoCodigo = $("codigo");
 
+// Para onde ir depois de entrar: só páginas do próprio site (evita redirecionar para fora)
+const volta = new URLSearchParams(location.search).get("volta") || "";
+const destino = /^[a-z]+\.html(\?(plano|pedido)=[A-Za-z0-9]+)?$/.test(volta) ? volta : "index.html";
+
 // Funções do servidor (functions/index.js): enviam e conferem o código
 const funcoes = app ? getFunctions(app, "us-central1") : null;
 const enviarCodigo = funcoes && httpsCallable(funcoes, "enviarCodigo");
@@ -134,7 +138,7 @@ formCodigo.addEventListener("submit", async (e) => {
   try {
     await verificarCodigo({ codigo });
     await auth.currentUser.getIdToken(true); // traz o token já com a marca de verificado
-    location.assign("index.html");
+    location.assign(destino);
   } catch (err) {
     statusConta.textContent = erroAmigavel(err);
   } finally {
@@ -155,7 +159,7 @@ $("cancelar").addEventListener("click", async () => {
 async function entrar(dados) {
   const cred = await signInWithEmailAndPassword(auth, dados.email, dados.senha);
   if (await estaVerificado(cred.user)) {
-    location.assign("index.html"); // volta ao site, na mesma aba
+    location.assign(destino); // volta ao site, na mesma aba
     return;
   }
   mostrarCodigo(cred.user);

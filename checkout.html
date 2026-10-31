@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://us-central1-capital-x-ff7b0.cloudfunctions.net; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="no-referrer">
+  <title>Checkout - Capital-X</title>
+  <link rel="icon" href="favicon.png" type="image/png" sizes="256x256">
+  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="checkout.css">
+  <script src="theme.js"></script>
+  <script type="module" src="checkout.js"></script>
+</head>
+<body>
+  <header class="topo">
+    <a class="voltar" href="planos.html">&larr; Back to plans</a>
+    <a class="marca nome notranslate" translate="no" href="index.html" aria-label="Capital-X"></a>
+    <span></span>
+  </header>
+
+  <main class="cartao">
+    <h1>Your details</h1>
+    <p class="resumo">Plan: <strong id="plano-nome" class="notranslate" translate="no">…</strong></p>
+
+    <form id="form-dados" novalidate hidden>
+      <label>Full name
+        <input type="text" name="nome" autocomplete="name" maxlength="80" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" autocomplete="email" maxlength="254" required>
+      </label>
+      <label>Phone (with area code)
+        <input type="tel" name="telefone" autocomplete="tel" inputmode="tel" maxlength="20" required>
+      </label>
+      <label>CPF or CNPJ (optional)
+        <input type="text" name="documento" inputmode="numeric" autocomplete="off" maxlength="18">
+      </label>
+      <p class="nota">Payment is made by Pix and charged in Brazilian reais (BRL). You will see the exact amount on the next step.</p>
+      <button class="enviar" type="submit">Continue to payment</button>
+    </form>
+
+    <p class="status" id="status" role="status" aria-live="polite">Checking your session…</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,32 @@
+/* Extras de checkout.html e pagamento.html (a base vem do login.css) */
+.resumo { margin: 0 0 1.5rem; font-size: 1.05rem; }
+.nota { margin: 0; font-size: .85rem; color: var(--cinza); }
+section[hidden] { display: none; }
+#pagar, #pago { display: grid; gap: 1rem; }
+
+/* O QR precisa ser preto sobre branco para o banco ler, em qualquer tema */
+.qr {
+  justify-self: center;
+  padding: .75rem;
+  background: #fff;
+  border: 1px solid var(--linha);
+}
+.qr img { display: block; width: 260px; height: 260px; max-width: 100%; height: auto; }
+
+.pix-texto {
+  font: .8rem/1.4 ui-monospace, Menlo, Consolas, monospace;
+  color: var(--texto);
+  background: transparent;
+  padding: .7rem .8rem;
+  border: 1px solid var(--linha);
+  border-radius: 0;
+  resize: none;
+  word-break: break-all;
+}
+
+.chave { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.chave code {
+  font: .85rem ui-monospace, Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+}
+a.enviar { text-decoration: none; }

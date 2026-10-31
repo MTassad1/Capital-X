@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; base-uri 'none'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: https://www.gstatic.com; style-src 'self' file:; img-src 'self' file: data:; connect-src https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://ipwho.is https://ipapi.co https://open.er-api.com https://api.gold-api.com https://api.oilpriceapi.com https://data-api.binance.vision https://brapi.dev; base-uri 'none'; form-action 'none'">
   <meta name="referrer" content="no-referrer">
   <title>Capital-X</title>
   <link rel="icon" href="/Capital-X/img/LEMP/fivecon-Capital-X.png" type="image/png" sizes="256x256">
   <link rel="shortcut icon" href="favicon.png" type="image/png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ticker.css">
   <script src="theme.js"></script>
   <script src="script.js" defer></script>
+  <script src="ticker.js" defer></script>
   <script type="module" src="session.js"></script>
 </head>
 <body>
@@ -29,7 +31,6 @@
         <nav class="menu" aria-label="Main">
           <a href="#">About us</a>
           <a href="#News" aria-current="page">News</a>
-          <a href="#">Plans</a>
           <a href="#">Contact</a>
         </nav>
         <button class="tema" id="tema" type="button" aria-label="Switch theme">
@@ -39,6 +40,19 @@
       </div>
     </div>
   </header>
+
+  <div class="ticker" id="ticker" role="region" aria-label="Market prices">
+    <div class="ticker-janela">
+      <div class="ticker-trilho" id="ticker-trilho">
+        <p class="ticker-aviso">Loading markets…</p>
+      </div>
+    </div>
+    <button class="ticker-config" id="ticker-config" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="ticker-painel" title="Choose which prices appear in the bar">
+      <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+      <span>Customize</span>
+    </button>
+    <div class="ticker-painel" id="ticker-painel" role="dialog" aria-label="Customize market bar" hidden></div>
+  </div>
 
   <div class="painel-fundo" id="painel-fundo"></div>
   <aside class="painel" id="painel" role="dialog" aria-modal="true" aria-labelledby="painel-titulo" inert>
@@ -50,6 +64,7 @@
     </div>
     <nav class="painel-botoes" aria-label="Account">
       <a class="painel-botao" id="painel-entrar" href="login.html">Sign in / Sign up</a>
+      <a class="painel-botao" href="planos.html">Plans</a>
       <a class="painel-botao" href="dashboard.html">Dashboard</a>
     </nav>
   </aside>
